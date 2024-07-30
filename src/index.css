@@ -8,7 +8,7 @@ body {
   font-weight: bold;
   background-color: black;
   color: white;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden; 
 }
 
 code {

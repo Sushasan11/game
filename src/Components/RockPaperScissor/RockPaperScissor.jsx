@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './RockPaperScissor.css'; 
 import end_icon from '../Assets/end.png'; 
 
 const RockPaperScissor = () => {
+  // State for managing the current page
   const [currentPage, setCurrentPage] = useState('welcome');
+  // State for tracking player score
   const [playerScore, setPlayerScore] = useState(0);
+  // State for tracking computer score
   const [computerScore, setComputerScore] = useState(0);
+  // State for tracking tie score
   const [tieScore, setTieScore] = useState(0);
+  // State for displaying the game result
   const [result, setResult] = useState('IT\'S A TIE!!');
 
+  // Function to play the game with the player's choice
   const playGame = (playerChoice) => {
     const choices = ['rock', 'paper', 'scissors'];
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -32,6 +38,7 @@ const RockPaperScissor = () => {
     setResult(resultMessage);
   };
 
+  // Function to reset the game scores and result
   const resetGame = () => {
     setPlayerScore(0);
     setComputerScore(0);
@@ -39,7 +46,8 @@ const RockPaperScissor = () => {
     setResult('IT\'S A TIE!!');
   };
 
-  const handleKeyPress = (event) => {
+  // Function to handle key press events
+  const handleKeyPress = useCallback((event) => {
     if (event.code === 'Space') {
       if (currentPage === 'welcome') {
         setCurrentPage('game');
@@ -49,21 +57,35 @@ const RockPaperScissor = () => {
         setCurrentPage('welcome');
       }
     }
-  };
+  }, [currentPage]);
 
+  // Function to handle touch start events for mobile devices
+  const handleTouchStart = useCallback(() => {
+    if (currentPage === 'welcome') {
+      setCurrentPage('game');
+    } else if (currentPage === 'game') {
+      setCurrentPage('end');
+    } else if (currentPage === 'end') {
+      setCurrentPage('welcome');
+    }
+  }, [currentPage]);
+
+  // Adding event listeners for key press and touch start
   useEffect(() => {
     document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener('touchstart', handleTouchStart);
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
+      document.removeEventListener('touchstart', handleTouchStart);
     };
-  }, [currentPage]);
+  }, [handleKeyPress, handleTouchStart]);
 
   return (
     <div>
       {/* Welcome Page Section */}
       <div id="welcomePage" className={`page ${currentPage === 'welcome' ? 'active' : ''}`}>
         <h1>Welcome to the Game</h1>
-        <p>Press space to start the game</p>
+        <p>Press space or tap to start the game</p>
       </div>
 
       {/* Game Page Section */}
@@ -85,8 +107,8 @@ const RockPaperScissor = () => {
 
       {/* End Page Section */}
       <div id="endPage" className={`page ${currentPage === 'end' ? 'active' : ''}`}>
-        <img src={end_icon} alt="End Image" className="full-image" />
-        <p>Press space to go back to the welcome page</p>
+        <img src={end_icon} alt="End" className="full-image" />
+        <p>Press space or tap to go back to the welcome page</p>
       </div>
     </div>
   );
