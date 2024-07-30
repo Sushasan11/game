@@ -1,0 +1,88 @@
+/* Styling for all pages */
+.page {
+  text-align: center;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Hide any overflow */
+  position: absolute; /* Ensure correct positioning */
+  top: 0; /* Align to top */
+  left: 0; /* Align to left */
+  display: none; /* Hide non-active pages */
+}
+
+/* Styling for active page visibility */
+.active {
+  display: block; /* Show the active page */
+}
+
+/* Styling for the choices container */
+.choices {
+  margin-bottom: 20px; /* Adjusted margin */
+}
+
+/* Styling for choice buttons */
+.choices button {
+  font-size: 80px; /* Reduced font size */
+  min-width: 120px; /* Adjusted width */
+  margin: 0 8px; /* Adjusted margin */
+  border-radius: 200px; /* Adjusted border-radius */
+  background-color: rgb(231, 171, 171);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+/* Styling for choice buttons when hovered */
+.choices button:hover {
+  background-color: rgb(100, 76, 76);
+}
+
+/* Styling for player and computer display */
+#playerdisplay,
+#computerdisplay {
+  font-size: 32px; /* Reduced font size */
+}
+
+/* Styling for result display */
+#resultdisplay {
+  font-size: 60px; /* Reduced font size */
+  margin: 20px 0; /* Adjusted margin */
+}
+
+/* Styling for score displays */
+.scoredisplay {
+  font-size: 24px; /* Reduced font size */
+}
+
+/* Styling for the final page image */
+.full-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Styling for the reset button */
+.reset-button {
+  font-size: 16px; /* Smaller font size */
+  padding: 8px 16px; /* Adjusted padding */
+  margin-top: 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Adjusted box-shadow */
+}
+
+/* Styling for the reset button when hovered */
+.reset-button:hover {
+  background-color: #c0392b;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adjusted box-shadow */
+  transform: translateY(-1px); /* Slight adjustment */
+}
+
+/* Styling for the reset button when focused */
+.reset-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.5); /* Adjusted box-shadow */
+}
